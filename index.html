@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Sajath Firthows | DevOps Engineer Portfolio</title>
+    <meta name="description" content="DevOps Engineer with 3+ years experience in AWS, Azure, Kubernetes, CI/CD, and Infrastructure automation">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0e27;
+            --secondary-bg: #141938;
+            --accent-blue: #00d4ff;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --card-bg: rgba(20, 25, 56, 0.6);
+            --border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(103, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 50px;
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-3);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styles */
+        section {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.4rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(103, 126, 234, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            border: 3px solid var(--primary-bg);
+        }
+
+        .timeline-date {
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .timeline-achievements li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .timeline-achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        section {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">&lt;Sajath/&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">🚀 DevOps Engineer | Platform Engineer | Based in Dubai, UAE</div>
+            <h1>Mohammed Sajath Firthows</h1>
+            <p class="hero-subtitle">Building reliable cloud infrastructure & automating deployments across AWS, Azure</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Cloud Platforms</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">16</div>
+            <div class="stat-label">Labs Completed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Dubai Based</div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <div class="section-tag">About Me</div>
+            <h2 class="section-title">DevOps Engineer with Cloud Expertise</h2>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">
+            <p style="margin-bottom: 1.5rem;">
+                With 3+ years of hands-on experience, I specialize in building and maintaining robust cloud infrastructure, 
+                implementing CI/CD pipelines, and ensuring high availability across AWS and Azure platforms.
+            </p>
+            <p style="margin-bottom: 1.5rem;">
+                Currently based in <span style="color: var(--accent-blue); font-weight: 600;">Dubai, UAE</span>, 
+                I bring international experience from working with industry leaders.
+            </p>
+            <p>
+                My expertise spans container orchestration with Kubernetes, infrastructure as code with Terraform, 
+                and building automated deployment pipelines that improve reliability and reduce deployment times.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <div class="section-tag">Technical Skills</div>
+            <h2 class="section-title">Technologies & Tools</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>☁️ Cloud Platforms</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Alibaba Cloud</span>
+                    <span class="skill-tag">EKS</span>
+                    <span class="skill-tag">AKS</span>
+                    <span class="skill-tag">EC2</span>
+                    <span class="skill-tag">S3</span>
+                    <span class="skill-tag">RDS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>🐳 Container & Orchestration</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Helm</span>
+                    <span class="skill-tag">Containerd</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>🔄 CI/CD & Automation</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">ArgoCD</span>
+                    <span class="skill-tag">GitLab CI</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>🏗️ Infrastructure as Code</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">Ansible</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>📊 Monitoring & Logging</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Prometheus</span>
+                    <span class="skill-tag">Grafana</span>
+                    <span class="skill-tag">DataDog</span>
+                    <span class="skill-tag">CloudWatch</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>🔐 Security & Secrets</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Vault</span>
+                    <span class="skill-tag">Cert-Manager</span>
+                    <span class="skill-tag">IAM</span>
+                    <span class="skill-tag">RBAC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <div class="section-tag">Projects & Labs</div>
+            <h2 class="section-title">Recent Work & Implementations</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">VUI Conversational AI Platform</h3>
+                    <p class="project-subtitle">Production AI Infrastructure</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Architected and deployed complete AWS infrastructure for enterprise conversational AI system. 
+                        Achieved 99.5% uptime with EKS, RDS, and comprehensive monitoring.
+                    </p>
+                    <div class="project-tech">
+                        <span class="skill-tag">AWS EKS</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Prometheus</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔄</div>
+                    <h3 class="project-title">Multi-Stage CI/CD Pipeline</h3>
+                    <p class="project-subtitle">Automated Deployment System</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Built production-grade CI/CD pipeline with Docker multi-stage builds, security scanning, 
+                        automated testing, and blue-green deployments to Kubernetes.
+                    </p>
+                    <div class="project-tech">
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Trivy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔐</div>
+                    <h3 class="project-title">HashiCorp Vault Implementation</h3>
+                    <p class="project-subtitle">Enterprise Secret Management</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Implemented centralized secret management using Vault with Kubernetes authentication, 
+                        dynamic database credentials, and automated secret rotation.
+                    </p>
+                    <div class="project-tech">
+                        <span class="skill-tag">Vault</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📊</div>
+                    <h3 class="project-title">ELK Stack Centralized Logging</h3>
+                    <p class="project-subtitle">Log Aggregation System</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Deployed Elasticsearch, Logstash, and Kibana stack for centralized logging across 
+                        Kubernetes clusters with custom dashboards and alerting.
+                    </p>
+                    <div class="project-tech">
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">Filebeat</span>
+                        <span class="skill-tag">Kibana</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔀</div>
+                    <h3 class="project-title">GitOps with ArgoCD</h3>
+                    <p class="project-subtitle">Automated Deployment Workflow</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Implemented GitOps workflow using ArgoCD for automated Kubernetes deployments with 
+                        Git as single source of truth and automatic synchronization.
+                    </p>
+                    <div class="project-tech">
+                        <span class="skill-tag">ArgoCD</span>
+                        <span class="skill-tag">GitOps</span>
+                        <span class="skill-tag">Kubernetes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🌍</div>
+                    <h3 class="project-title">Multi-Environment Terraform</h3>
+                    <p class="project-subtitle">Infrastructure Automation</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Managed multi-environment infrastructure (dev/staging/prod) using Terraform workspaces 
+                        with environment-specific configurations and state isolation.
+                    </p>
+                    <div class="project-tech">
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Workspaces</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <div class="section-tag">Career Journey</div>
+            <h2 class="section-title">Professional Experience</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">March 2024 – March 2025</div>
+                <h3 class="timeline-company">EY (Ernst & Young)</h3>
+                <p class="timeline-role">DevOps Engineer | Riyadh, Saudi Arabia</p>
+                <ul class="timeline-achievements">
+                    <li>Architected highly available cloud infrastructure achieving excellent uptime across AWS and Azure</li>
+                    <li>Enhanced Kubernetes cluster performance reducing system downtime significantly</li>
+                    <li>Redesigned CI/CD pipelines improving deployment reliability and speed</li>
+                    <li>Automated infrastructure provisioning managing 150+ cloud resources</li>
+                    <li>Strengthened security posture through DevSecOps implementation</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">September 2023 – January 2024</div>
+                <h3 class="timeline-company">Cloud Solution International / Whale Cloud</h3>
+                <p class="timeline-role">Cloud Engineer | Alibaba Cloud Contract, Dubai, UAE</p>
+                <ul class="timeline-achievements">
+                    <li>Managed Alibaba Cloud infrastructure supporting critical services</li>
+                    <li>Led automation initiatives reducing deployment time through CI/CD</li>
+                    <li>Designed scalable cloud architectures improving reliability</li>
+                    <li>Achieved cost reduction through efficient resource management</li>
+                    <li>Deployed comprehensive monitoring solutions increasing uptime</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">March 2023 – March 2024</div>
+                <h3 class="timeline-company">Aeturnum</h3>
+                <p class="timeline-role">Cloud Engineer | Sri Lanka</p>
+                <ul class="timeline-achievements">
+                    <li>Built VUI conversational AI platform infrastructure on AWS</li>
+                    <li>Deployed resources using Terraform ensuring consistency</li>
+                    <li>Automated maintenance tasks improving system stability</li>
+                    <li>Designed Jenkins CI/CD pipelines reducing release cycles</li>
+                    <li>Created comprehensive infrastructure documentation</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">June 2022 – February 2023</div>
+                <h3 class="timeline-company">24/7 Techies PVT LTD</h3>
+                <p class="timeline-role">DevOps Engineer | Sri Lanka</p>
+                <ul class="timeline-achievements">
+                    <li>Assisted infrastructure provisioning using Terraform</li>
+                    <li>Supported CI/CD pipeline automation with Jenkins</li>
+                    <li>Managed ServiceNow ticketing with high customer satisfaction</li>
+                    <li>Maintained comprehensive system documentation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <div class="section-tag">Get In Touch</div>
+            <h2 class="section-title">Let's Connect</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:sajathfm8@gmail.com">sajathfm8@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3>Phone</h3>
+                <a href="tel:+971568595063">+971 568595063</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/sajathfirthows" target="_blank">linkedin.com/in/sajathfirthows</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3>Location</h3>
+                <a>Dubai, UAE</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sajath Firthows. Built with passion for DevOps Cloud & Platform Engineering.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Available for opportunities in United Arab Emirates</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
